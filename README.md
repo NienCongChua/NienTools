@@ -1,8 +1,10 @@
 <div align="center">
 
-# 🔢 NienTools
 
-### Công cụ chuyển đổi số thành chữ cho Excel
+# 🛠️ SuperTools
+
+
+### Add-in chuyển đổi số thành chữ và tiện ích cho Excel
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.7-purple.svg)](https://dotnet.microsoft.com/)
@@ -19,7 +21,7 @@
 
 ## 📖 Giới thiệu
 
-**NienTools** là một Excel Add-in mã nguồn mở, miễn phí, được phát triển nhằm cung cấp các công cụ chuyển đổi số thành chữ cho tiếng Việt và tiếng Anh. Dự án được xây dựng với mục tiêu:
+**SuperTools** là một Excel Add-in mã nguồn mở, miễn phí, cung cấp các hàm chuyển đổi số thành chữ tiếng Việt, tiếng Anh và các tiện ích xử lý chuỗi cho Excel.
 
 - ✅ **Miễn phí** - Hoàn toàn không thu phí
 - ✅ **Mã nguồn mở** - Minh bạch, có thể cải tiến
@@ -29,43 +31,43 @@
 
 ## ✨ Tính năng
 
+
 ### 🇻🇳 Chuyển đổi số thành chữ tiếng Việt
 
-| Hàm               | Mô tả                            | Ví dụ                                                                                        |
-| ----------------- | -------------------------------- | -------------------------------------------------------------------------------------------- |
-| `=DocTien(số)`    | Chuyển số thành chữ tiền tệ VND  | `=DocTien(1234567)` → "Một triệu hai trăm ba mươi bốn nghìn năm trăm sáu mươi bảy đồng chẵn" |
-| `=DocSo(số)`      | Đọc số thuần (không đơn vị)      | `=DocSo(123)` → "Một trăm hai mươi ba"                                                       |
-| `=DocUnicode(số)` | Đọc số theo bảng mã Unicode      | `=DocUnicode(456)` → "Bốn trăm năm mươi sáu"                                                 |
-| `=DocVNI(số)`     | Đọc số theo bảng mã VNI (legacy) | `=DocVNI(789)` → Kết quả dạng VNI                                                            |
+| Hàm                | Mô tả                                 | Ví dụ                                                                                         |
+| ------------------ | ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `=VND(số)`         | Chuyển số thành chữ tiền tệ Việt Nam  | `=VND(1234567)` → "Một triệu hai trăm ba mươi bốn nghìn năm trăm sáu mươi bảy đồng chẵn."    |
+| `=REMOVEACCENT(chuỗi)` | Loại bỏ dấu tiếng Việt khỏi chuỗi | `=REMOVEACCENT("Trần Thị Bích Ngọc")` → "Tran Thi Bich Ngoc"                                |
+
 
 ### 🇺🇸 Chuyển đổi số thành chữ tiếng Anh
 
-| Hàm               | Mô tả                   | Ví dụ                                                                                      |
-| ----------------- | ----------------------- | ------------------------------------------------------------------------------------------ |
-| `=DocTienAnh(số)` | Chuyển số thành chữ USD | `=DocTienAnh(1234.56)` → "One thousand two hundred thirty-four Dollars and fifty-six cent" |
+| Hàm         | Mô tả                        | Ví dụ                                                                                       |
+| ----------- | ---------------------------- | ------------------------------------------------------------------------------------------- |
+| `=USD(số)`  | Chuyển số thành chữ tiền USD | `=USD(1234.56)` → "One thousand two hundred thirty-four dollars and fifty-six cents."       |
+
 
 ### 🔧 Tiện ích bổ sung
 
-| Hàm                     | Mô tả                        | Ví dụ                                             |
-| ----------------------- | ---------------------------- | ------------------------------------------------- |
-| `=ChuThanhSo(chữ)`      | Chuyển chữ thành số (parser) | `=ChuThanhSo("một triệu")` → `1000000`            |
-| `=VietHoaDauCau(chuỗi)` | Viết hoa ký tự đầu câu       | `=VietHoaDauCau("hello")` → "Hello"               |
-| `=TachHoTen(họ_tên)`    | Tách họ tên thành các phần   | `=TachHoTen("Nguyễn Văn An")` → "Nguyễn\|Văn\|An" |
+| Hàm                | Mô tả                        | Ví dụ                                             |
+| ------------------ | ---------------------------- | ------------------------------------------------- |
+| `=REMOVEACCENT(chuỗi)` | Loại bỏ dấu tiếng Việt      | `=REMOVEACCENT("Nguyễn Văn An")` → "Nguyen Van An" |
 
 ### 🎯 Tùy chọn linh hoạt
 
-Hàm `DocTien` hỗ trợ nhiều tham số tùy chọn:
+
+Hàm `VND` và `USD` hỗ trợ các tham số tùy chọn:
 
 ```excel
-=DocTien(số, [có_đơn_vị], [viết_hoa], [đơn_vị_tiền], [đơn_vị_xu])
+=VND(số, [có_đơn_vị], [đơn_vị_nghìn])
+=USD(số, [có_đơn_vị])
 ```
 
 **Ví dụ:**
 
-- `=DocTien(1500000)` → "Một triệu năm trăm nghìn đồng chẵn"
-- `=DocTien(1500000, TRUE, FALSE)` → "một triệu năm trăm nghìn đồng chẵn"
-- `=DocTien(1500000, TRUE, TRUE, "USD", "cent")` → "Một triệu năm trăm nghìn USD chẵn"
-- `=DocTien(1234.56, TRUE, TRUE, "đồng", "xu")` → "Một nghìn hai trăm ba mươi bốn đồng năm mươi sáu xu"
+- `=VND(1500000)` → "Một triệu năm trăm nghìn đồng chẵn."
+- `=VND(1500000, TRUE, FALSE)` → "Một triệu năm trăm ngàn đồng chẵn."
+- `=USD(1234.56)` → "One thousand two hundred thirty-four dollars and fifty-six cents."
 
 ## 🚀 Cài đặt
 
@@ -90,43 +92,47 @@ Hàm `DocTien` hỗ trợ nhiều tham số tùy chọn:
    - Tick vào **NienTools** và nhấn **OK**
 
 3. **Kiểm tra**
-   - Mở Excel và thử hàm `=DocTien(12345)`
+   - Mở Excel và thử hàm `=VND(12345)`
    - Nếu hiển thị "Mười hai nghìn ba trăm bốn mươi lăm đồng chẵn" → Thành công! 🎉
 
 ## 📚 Sử dụng
 
 ### Ví dụ cơ bản
 
+
 #### Chuyển đổi số thành chữ tiền Việt
 
 ```excel
 A1: 1234567
-B1: =DocTien(A1)
-→ Kết quả: "Một triệu hai trăm ba mươi bốn nghìn năm trăm sáu mươi bảy đồng chẵn"
+B1: =VND(A1,0)
+→ Kết quả: "Một triệu hai trăm ba mươi bốn nghìn năm trăm sáu mươi bảy."
 ```
+
 
 #### Chuyển đổi số thập phân
 
 ```excel
 A1: 1234.56
-B1: =DocTien(A1, TRUE, TRUE, "đồng", "xu")
-→ Kết quả: "Một nghìn hai trăm ba mươi bốn đồng năm mươi sáu xu"
+B1: =VND(A1)
+→ Kết quả: "Một nghìn hai trăm ba mươi bốn đồng năm mươi sáu xu."
 ```
+
 
 #### Chuyển đổi số âm
 
 ```excel
 A1: -500000
-B1: =DocTien(A1)
-→ Kết quả: "âm năm trăm nghìn đồng chẵn"
+B1: =VND(A1,1,0)
+→ Kết quả: "Âm năm trăm ngàn đồng chẵn."
 ```
+
 
 #### Chuyển đổi sang tiếng Anh
 
 ```excel
 A1: 1234.56
-B1: =DocTienAnh(A1)
-→ Kết quả: "One thousand two hundred thirty-four Dollars and fifty-six cent"
+B1: =USD(A1)
+→ Kết quả: "One thousand two hundred thirty-four dollars and fifty-six cents."
 ```
 
 ### Ví dụ nâng cao
@@ -135,49 +141,43 @@ B1: =DocTienAnh(A1)
 
 ```excel
 A1: 15750000
-B1: =DocTien(A1, TRUE, TRUE)
+B1: =VND(A1, TRUE, TRUE)
 → "Mười lăm triệu bảy trăm năm mươi nghìn đồng chẵn"
-```
-
-#### Tách họ tên
-
-```excel
-A1: "Trần Thị Bích Ngọc"
-B1: =TachHoTen(A1)
-→ "Trần|Thị Bích|Ngọc"
 ```
 
 ## 🛠️ Phát triển
 
+
 ### Công nghệ sử dụng
 
-- **Ngôn ngữ**: C# (.NET Framework 4.7)
-- **Framework**: VSTO (Visual Studio Tools for Office)
+- **Ngôn ngữ**: C# (.NET Framework 4.8)
 - **Add-in Engine**: [Excel-DNA](https://excel-dna.net/) 1.9.0
 - **IDE**: Visual Studio 2019/2022
+- **Hệ điều hành**: Windows
 
 ### Build từ mã nguồn
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/NienTools.git
-cd NienTools
+git clone https://github.com/your-username/SuperTools.git
+cd SuperTools
 
 # Mở solution
-NienTools.slnx
+SuperTools.slnx
 
 # Build trong Visual Studio (Ctrl+Shift+B)
-# Output: NienTools\bin\Debug\NienTools-AddIn.xll
+# Output: SuperTools\bin\Debug\SuperTools-AddIn.xll
 ```
 
 ### Cấu trúc dự án
 
 ```
-NienTools/
-├── NienTools/
-│   ├── ThisAddIn.cs          # Core logic: Các hàm Excel
-│   ├── NienTools.csproj      # Project configuration
-│   └── NienTools-AddIn.dna   # Excel-DNA manifest
+SuperTools/
+├── SuperTools/
+│   ├── Functions.cs           # Các hàm Excel chính
+│   ├── Helper.cs              # Hàm phụ trợ
+│   ├── SuperTools.csproj      # Project configuration
+│   └── SuperTools-AddIn.dna   # Excel-DNA manifest
 ├── packages/                  # NuGet packages
 ├── README.md                  # Tài liệu này
 └── LICENSE                    # Giấy phép MIT

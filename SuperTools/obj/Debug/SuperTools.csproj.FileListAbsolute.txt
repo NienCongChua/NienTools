@@ -1,0 +1,10 @@
+D:\Workspace\SuperTools\SuperTools\bin\Debug\SuperTools.dll
+D:\Workspace\SuperTools\SuperTools\bin\Debug\SuperTools.pdb
+D:\Workspace\SuperTools\SuperTools\bin\Debug\ExcelDna.IntelliSense.dll
+D:\Workspace\SuperTools\SuperTools\bin\Debug\ExcelDna.Integration.xml
+D:\Workspace\SuperTools\SuperTools\obj\Debug\SuperTools.csproj.AssemblyReference.cache
+D:\Workspace\SuperTools\SuperTools\obj\Debug\SuperTools.csproj.CoreCompileInputs.cache
+D:\Workspace\SuperTools\SuperTools\obj\Debug\SuperTools.csproj.Up2Date
+D:\Workspace\SuperTools\SuperTools\obj\Debug\SuperTools.dll
+D:\Workspace\SuperTools\SuperTools\obj\Debug\SuperTools.pdb
+D:\Workspace\SuperTools\SuperTools\bin\Debug\SuperTools-AddIn.dna
