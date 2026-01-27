@@ -81,15 +81,18 @@ Hàm `VND` và `USD` hỗ trợ các tham số tùy chọn:
 
 1. **Tải về phiên bản mới nhất**
 
-   - Truy cập [Releases](../../releases) và tải file `.xll` hoặc `.xla`
+   - Truy cập [Releases](../../releases) và tải file `.xll`.
 
 2. **Cài đặt Add-in**
 
+   - Mở file `.xll` vừa tải về (thường nằm trong phần `Downloads`)
+   - Click chuột phải vào file vừa tải về, chọn `Properties`.
+   - Tick vào ô `Unlock` trong thẻ *General* rồi nhấn `OK` (Nếu có)
    - Mở Excel
    - Vào **File** → **Options** → **Add-ins**
    - Chọn **Excel Add-ins** và nhấn **Go...**
    - Nhấn **Browse...** và chọn file đã tải
-   - Tick vào **NienTools** và nhấn **OK**
+   - Tick vào **SuperTools Add-In** và nhấn **OK**
 
 3. **Kiểm tra**
    - Mở Excel và thử hàm `=VND(12345)`
