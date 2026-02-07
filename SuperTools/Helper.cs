@@ -147,38 +147,35 @@ namespace SuperTools
         {
             if (number == 0) return "không";
             if (number < 0) return "âm " + NumberToVietnamese(Math.Abs(number), thousandName);
-            if (number < 1000)
+            // Định nghĩa các đơn vị lớn hơn
+            string[] units = { "", thousandName, "triệu", "tỷ", "nghìn tỷ", "triệu tỷ", "tỷ tỷ" };
+            List<string> parts = new List<string>();
+            int unitIndex = 0;
+            while (number > 0 && unitIndex < units.Length)
             {
-                return ConvertBelowOneThousand((int)number);
+                int chunk = (int)(number % 1000);
+                if (chunk > 0)
+                {
+                    string chunkText = ConvertBelowOneThousand(chunk);
+                    if (!string.IsNullOrEmpty(units[unitIndex]))
+                        chunkText += " " + units[unitIndex];
+                    parts.Insert(0, chunkText);
+                }
+                number /= 1000;
+                unitIndex++;
             }
-            var sb = new StringBuilder();
-            long billions = number / 1000000000;
-            long millions = (number % 1000000000) / 1000000;
-            long thousands = (number % 1000000) / 1000;
-            int rest = (int)(number % 1000);
-            if (billions > 0)
+            // Nếu số còn lại lớn hơn 0, tiếp tục thêm "tỷ" cho mỗi 3 số
+            while (number > 0)
             {
-                sb.Append(ConvertBelowOneThousand((int)billions));
-                sb.Append(" tỷ");
+                int chunk = (int)(number % 1000);
+                if (chunk > 0)
+                {
+                    string chunkText = ConvertBelowOneThousand(chunk) + " tỷ";
+                    parts.Insert(0, chunkText);
+                }
+                number /= 1000;
             }
-            if (millions > 0)
-            {
-                if (sb.Length > 0) sb.Append(" ");
-                sb.Append(ConvertBelowOneThousand((int)millions));
-                sb.Append(" triệu");
-            }
-            if (thousands > 0)
-            {
-                if (sb.Length > 0) sb.Append(" ");
-                sb.Append(ConvertBelowOneThousand((int)thousands));
-                sb.Append(" " + thousandName);
-            }
-            if (rest > 0)
-            {
-                if (sb.Length > 0) sb.Append(" ");
-                sb.Append(ConvertBelowOneThousand(rest));
-            }
-            var result = sb.ToString().Replace(" ", " ").Trim();
+            var result = string.Join(" ", parts).Replace("  ", " ").Trim();
             if (string.IsNullOrWhiteSpace(result))
                 return ConvertBelowOneThousand((int)number % 1000);
             return result;
@@ -250,9 +247,10 @@ namespace SuperTools
             if (number == 0) return "zero";
             if (number < 0) return "minus " + NumberToEnglish(Math.Abs(number));
             var parts = new List<string>();
-            var scales = new[] { "", "thousand", "million", "billion", "trillion" };
+            // Hỗ trợ đến sextillion (10^21), có thể mở rộng thêm nếu cần
+            var scales = new[] { "", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion" };
             int scale = 0;
-            while (number > 0)
+            while (number > 0 && scale < scales.Length)
             {
                 int chunk = (int)(number % 1000);
                 if (chunk > 0)
@@ -263,6 +261,17 @@ namespace SuperTools
                 }
                 number /= 1000;
                 scale++;
+            }
+            // Nếu số còn lại lớn hơn 0, tiếp tục thêm "billion" cho mỗi 3 số
+            while (number > 0)
+            {
+                int chunk = (int)(number % 1000);
+                if (chunk > 0)
+                {
+                    var chunkWords = ChunkToEnglishFast(chunk) + " billion";
+                    parts.Insert(0, chunkWords);
+                }
+                number /= 1000;
             }
             return string.Join(" ", parts).Trim();
         }
